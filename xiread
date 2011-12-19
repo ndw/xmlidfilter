@@ -1,0 +1,18 @@
+#!/bin/bash
+
+XMLID="build/classes"
+XERCES="lib/xercesImpl.jar"
+
+CLASSPATH=$XMLID:$XERCES
+
+#echo $CLASSPATH
+
+java \
+  com.nwalsh.xmlidfilter.apps.XMLIdTest $*
+
+if [ $? != 0 ]; then
+  echo ""
+  echo FAILED
+  echo ""
+  exit 1
+fi

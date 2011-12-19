@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Irrelevant Title</title>
+<body>
+<p>Applications demonstrating XMLIdFilter.</p>
+
+<p>XMLIdTest is a test application for the XMLIdFilter class.</p>
+
+<h3>Usage</h3>
+
+<p>Make sure that the classes from
+this distribution, SAX, and Xerces are on your class path, then run:
+</p>
+
+<pre>java com.nwalsh.xmlidfilter.apps.XMLIdTest <em>[options]</em> <em>yourfile.xml</em></pre>
+
+<p>That will parse <em>yourfile.xml</em> and report any xml:id errors
+that occur as well as the resulting types of all attributes.</p>
+
+<h4>Options</h4>
+<dl>
+<dt>-v</dt><dt>-V</dt>
+<dd>Disable (-v) or enable (-V) validation. False by default.</dd>
+<dt>-n</dt><dt>-N</dt>
+<dd>Disable (-n) or enable (-N) namespace awareness. True by default.</dd>
+<dt>-w</dt><dt>-W</dt>
+<dd>Disable (-w) or enable (-W) xml:id warnings. True by default.</dd>
+<dt>-c <em>classname</em></dt>
+<dd>Use <em>classname</em> as the underlying reader class. If not specified,
+the <code>SAXParserFactory</code> mechanism will be used to get a parser.</dd>
+</dt>
+
+<p>See also, <a href="../../../../../overview-summary.html">package overview</a>.</p>
+
+</body>
+</head>

@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>XMLIdFilter: An XMLFilter for xml:id Processing</title>
+</head>
+<body>
+<h1>XMLIdFilter: An XMLFilter for xml:id Processing.</h1>
+
+<p>The XMLIdFilter class is a SAX XMLFilter that supports
+<a href="http://www.w3.org/TR/xml-id/">xml:id Version 1.0</a>.
+</p>
+
+<p>This filter is a complete implementation of xml:id within the
+constraints imposed by SAX and the by the caller.</p>
+
+<blockquote>
+<p>Classes and Documentation Copyright &#169; 2004, 2011 Norman Walsh.</p>
+<p>This program and its associated documentation are free software;
+you can redistribute it and/or
+modify it in any way shape or form without limitation.
+It is distributed WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+</blockquote>
+
+<p>This documentation is for Version 1.0 of the classes, which implements
+the 9 September 2005 Recommendation of xml:id.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>Java JDK 1.4 or later.</li>
+<li>SAX 2.0 or later. If SAX 2.0.1 or later is available, additional attribute
+type tests will be performed.</li>
+<li>Xerces 2.0 or later for the <code>org.apache.xerces.util.XMLChar</code> and
+<code>org.apache.xerces.util.XML11Char</code> classes.</li>
+</ul>
+
+<h2>Limitations</h2>
+
+<ul>
+<li>If the SAX <code>Attributes</code> does not support the
+<code>isDeclared()</code> method, the filter cannot distinguish
+between an undeclared xml:id attribute and an xml:id attribute
+erroneously declared as CDATA.</li>
+<li>If the SAX <code>Locator</code> used does not support the
+<code>getXMLVersion()</code> method, the filter assumes that all
+xml:id values must be valid XML 1.0 NCNames. (If the method is
+available, it tests for valid XML 1.1 NCNames when XML 1.1 is
+used.)</li>
+<li>The filter uses a hash to keep track of ID values that have
+been seen. If the caller selects a limited hash size, then
+duplicate ID values may not be detected.</li>
+</ul>
+
+<p>Errors are reported by calling the SAX XMLFilterImpl's
+<code>error()</code> method with an XMLIdException.</p>
+
+<h2>Notes</h2>
+
+<ul>
+<li>This code is a lightly edited fork of the
+<a href="http://java.net/projects/xmlidfilter/">xmlidfilter</a> project
+at <a href="http://java.net/">Java.net</a>.</li>
+<li>Relies on <code>org.apache.xerces.util.XMLChar</code> and
+<code>XML11Char</code> to test the validity of NCNames.</li>
+<li>The Xerces <code>Locator</code> implements
+<code>getXMLVersion()</code> without claiming to implement the
+<code>Locator2</code> interface, so we go looking for that method by
+reflection.</li>
+<li>If an xml:id attribute is promoted, we have to construct a new set
+of attributes for the element. This is accomplished by constructing an
+instance of <code>org.xml.sax.helpers.AttributesImpl</code> directly. This means
+that a subclass that extends <code>startElement()</code> will not see
+the results of calling <code>super().startElement()</code> reflected
+in the atts passed to it. Is there a better way?
+</li>
+<li>If the <code>XMLChar</code> or <code>XML11Char</code> classes
+aren't available at runtime, the filter calls <code>warning()</code>
+once and then proceeds, skipping most of the NCName tests;
+it performs only a very crude test over the ASCII range.</li>
+</ul>
+
+<h2>Usage</h2>
+
+<p>For detailed usage, consult <a href="../apidocs/index.html">the API
+documentation</a>.</p>
+
+<h3>Testing</h3>
+
+<p>The distribution includes a test class, <code>XMLIdTest</code> that
+can be used to try out the filter. Make sure that the classes from
+this distribution, SAX, and Xerces are on your class path, then run:
+</p>
+
+<pre>java com.nwalsh.xmlidfilter.apps.XMLIdTest <em>[options]</em> <em>yourfile.xml</em></pre>
+
+<p>That will parse <em>yourfile.xml</em> and report any xml:id errors
+that occur as well as the resulting types of all attributes.</p>
+
+<h4>Options</h4>
+<dl>
+<dt>-v</dt><dt>-V</dt>
+<dd>Disable (-v) or enable (-V) validation. False by default.</dd>
+<dt>-n</dt><dt>-N</dt>
+<dd>Disable (-n) or enable (-N) namespace awareness. True by default.</dd>
+<dt>-w</dt><dt>-W</dt>
+<dd>Disable (-w) or enable (-W) xml:id warnings. True by default.</dd>
+<dt>-c <em>classname</em></dt>
+<dd>Use <em>classname</em> as the underlying reader class. If not specified,
+the <code>SAXParserFactory</code> mechanism will be used to get a parser.</dd>
+</dt>
+
+<h4>Test Cases</h4>
+
+<p>A set of <a target="_top" href="../tests">test cases</a>
+is included in the distribution.</p>
+
+<h3>With Another Processor</h3>
+
+<p>You can put these classes to work by using the
+<code>com.nwalsh.xmlidfilter.XMLIdReader</code>. For example,
+<a href="http://www.saxonica.com/">Saxon</a> supports a <code>-x</code>
+command line argument to specify the class that should be used to
+read source documents. If you specify 
+<code>com.nwalsh.xmlidfilter.XMLIdReader</code>, the transformation will
+be xml:id aware.</p>
+
+</body>
+</html>

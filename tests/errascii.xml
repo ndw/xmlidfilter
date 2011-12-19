@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <p xml:id="an id"/>
+  <p xml:id="@bad"/> <!-- 0x40 -->
+  <p xml:id="Aok"/>  <!-- 0x41 -->
+  <p xml:id="Zok"/>  <!-- 0x5A -->
+  <p xml:id="[bad"/> <!-- 0x5B -->
+  <p xml:id="`bad"/> <!-- 0x60 -->
+  <p xml:id="aok"/>  <!-- 0x61 -->
+  <p xml:id="zok"/>  <!-- 0x7A -->
+  <p xml:id="{bad"/> <!-- 0x7B -->
+  <p xml:id="×bad-but-not-caught-by-the-ascii-test"/> <!-- 0xD7 -->
+  <p xml:id="0bad"/>
+  <p xml:id="ok0"/>
+  <p xml:id="9bad"/>
+  <p xml:id="ok9"/>
+</doc>

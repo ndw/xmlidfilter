@@ -1,0 +1,12 @@
+<!DOCTYPE doc [
+<!ELEMENT doc (p+)>
+<!ELEMENT p (#PCDATA)*>
+<!ATTLIST p xml:id ID #IMPLIED>
+<!ATTLIST p role CDATA #IMPLIED>
+<!ATTLIST p linkend IDREF #IMPLIED>
+]>
+<doc>
+ <p xml:id="anid"/>
+ <p xml:id="anotherid" role="xmlid"/>
+ <p linkend="anid"/>
+</doc>

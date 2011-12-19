@@ -1,0 +1,6 @@
+<!DOCTYPE doc [
+<!ATTLIST p id ID #IMPLIED>
+]>
+<doc>
+ <p id="id1" xml:id="id1"/>
+</doc>

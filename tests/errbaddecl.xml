@@ -1,0 +1,8 @@
+<!DOCTYPE doc [
+<!ELEMENT doc (p+)>
+<!ELEMENT p (#PCDATA)*>
+<!ATTLIST p xml:id NMTOKEN #IMPLIED>
+]>
+<doc>
+ <p xml:id="anid"/>
+</doc>

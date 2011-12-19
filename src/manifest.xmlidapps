@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+
+Name: com/nwalsh/xmlidfilter/apps
+Comment: XMLIdFilter Applications
+Implementation-Vendor: Norman Walsh
+Implementation-URL: https://github.com/ndw/xmlidfilter/
